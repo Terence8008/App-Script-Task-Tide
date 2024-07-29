@@ -1,0 +1,96 @@
+﻿<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+
+
+
+  // Generate Resource Plan
+  document.getElementById("generatePlanBtn").addEventListener("click",generatePlan);
+
+  function generatePlan(){
+    google.script.run.generatePlanSheet();
+  }
+
+  // Generate Resource Plan End
+
+  // Setup Rules
+  document.getElementById("generatePlanBtn").addEventListener("click",setupRules);
+
+  function setupRules(){
+    var rules = {};
+
+    rules.maxEmployeePerDay = document.getElementById("maxEmployeePerDay").value;
+    rules.maxHourPerEmployee =document.getElementById("maxHourPerEmployee").value;
+
+    google.script.run.getRulesValue(rules);
+  }
+  // End Setup Rules
+
+  // Add Task
+
+  document.getElementById("confirmAddTaskBtn").addEventListener("click",addTask);
+
+  function addTask(){
+    var taskInfo = {};
+
+    taskInfo.TaskName = document.getElementById("taskName").value;
+    taskInfo.TaskDepartment = document.getElementById("taskDepartment").value;
+    taskInfo.TaskWorkHour = document.getElementById("taskWorkHour").value;
+    taskInfo.TaskPriorities = document.getElementById("taskPriorities").value;
+
+    google.script.run.insertNewTask(taskInfo);
+  }
+
+  // Add Task End
+
+  document.getElementById("addBtn").addEventListener("click",addEmployee);
+
+  function addEmployee(){
+
+    var employeeInfo = {};
+
+    employeeInfo.FirstName = document.getElementById("fn").value;
+    employeeInfo.LastName = document.getElementById("ln").value;
+    employeeInfo.ID = document.getElementById("Emid").value;
+    employeeInfo.Team = document.getElementById("Team").value;
+    employeeInfo.AvailableHour = document.getElementById("ah").value;
+    employeeInfo.Skill = document.getElementById("skillLevel").value;
+    employeeInfo.ActualHourWorked = document.getElementById("ahw").value;
+
+
+    google.script.run.insertNewEmployee(employeeInfo);
+    document.getElementById("fn").value = "";
+    M.FormSelect.init(elems);
+  }
+
+  // setup user sheet url
+  document.getElementById("setupBtn").addEventListener("click",setupSheetUrl);
+
+  function setupSheetUrl(){
+    var sheetInfo = {}
+    sheetInfo.Url = document.getElementById("sheetUrlField").value;
+
+    google.script.run.setupSheet(sheetInfo);
+  }
+
+  document.getElementById("RemoveBtn").addEventListener("click", removeEmployee);
+
+      function removeEmployee() {
+        var firstName = document.getElementById("fn").value;
+        var lastName = document.getElementById("ln").value;
+
+        google.script.run.withSuccessHandler(function() {
+          document.getElementById("fn").value = "";
+          document.getElementById("ln").value = "";
+          M.toast({html: 'Employee removed successfully'});
+        }).removeEmployeeByName(firstName, lastName);
+
+        google.script.run.removeEmployee();
+        document.getElementById("fn").value = "";
+        M.FormSelect.init(elems);
+      }
+
+</script>

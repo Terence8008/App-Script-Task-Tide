@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?!= include("page-css"); ?>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper black">
+            <a href="#" class="brand-logo white-text ">TASK TIDE</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <?var url = getScriptUrl();?>
+                <li><a href='<?=url?>?page=Home' class="white-text">Home</a></li>
+                <li><a href="<?=url?>?page=Task List" class="white-text">Task List</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Add Task</h1>
+            <div class="row">
+                <input id="taskName" type="text" class="validate">
+                <label for="taskName">Task Name</label>
+            </div> <!-- End Row -->
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="taskDepartment">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Design</option>
+                        <option value="2">Marketing</option>
+                        <option value="3">Human Resource</option>
+                    </select>
+                    <label>Department</label>
+                </div>
+            </div> <!-- End Row -->
+
+            <div class="row">
+                <input id="taskWorkHour" type="text" class="validate">
+                <label for="taskWorkHour">Hour to be work on</label>
+            </div> <!-- End Row -->
+
+            <div class="row">
+                <input id="taskPriorities" type="text" class="validate">
+                <label for="taskPriorities">Task priorities</label>
+            </div> <!-- End Row -->
+
+            <div class="row">
+                <button id="closeAddTaskBtn">Close</button>
+                <button id="confirmAddTaskBtn">Confirm</button>
+            </div>
+
+            <div class="row">
+                <?var url = getScriptUrl();?>
+                <a href='<?=url?>?page=Home' class="waves-effect waves-light btn">Go Back to Home</a>
+                <a href=''>
+            </div> <!-- Close Row -->
+        </div> <!-- Close Container -->
+
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <script>
+      document.getElementById("confirmAddTaskBtn").addEventListener("click",addTask);
+
+      function addTask(){
+        var taskInfo = {};
+
+        taskInfo.TaskName = document.getElementById("taskName").value;
+        taskInfo.TaskDepartment = document.getElementById("taskDepartment").value;
+        taskInfo.TaskWorkHour = document.getElementById("taskWorkHour").value;
+        taskInfo.TaskPriorities = document.getElementById("taskPriorities").value;
+
+        google.script.run.insertNewTask(taskInfo);
+      }
+    </script>
+
+    <?!= include("page-js"); ?>
+    <footer class="page-footer black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Contacts</h5>
+                    <p class="grey-text text-lighten-4">Email: ooiyinyao@gmail.com</p>
+                    <p class="grey-text text-lighten-4">Phone: 011-111 1111</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Other Features</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">BasicWebApp</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Employee List</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">WorkloadAnalysis</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Task List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>

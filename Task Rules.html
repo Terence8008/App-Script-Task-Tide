@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?!= include("page-css"); ?>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper black">
+            <a href="#" class="brand-logo white-text ">TASK TIDE</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <?var url = getScriptUrl();?>
+                <li><a href='<?=url?>?page=Home' class="white-text">Home</a></li>
+                <li><a href="<?=url?>?page=Task List" class="white-text">Task List</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+
+            <h1> Task rules</h1>
+            <br>
+            <p> Values set at 0 will be not applied</p>
+            <div class="row">
+                <p>Max hour of employee working per day: </p>
+                <form action="#">
+                    <p class="range-field">
+                        <input type="range" id="maxHourPerEmployee" min="1" max="8" value="0" />
+                    </p>
+                </form>
+            </div> <!-- Close Row-->
+
+            <div class="row">
+                <p>Maximum people working per day: </p>
+                <form action="#">
+                    <p class="range-field">
+                        <input type="range" id="maxEmployeePerDay" min="1" max="10" value="0" />
+                    </p>
+                </form>
+            </div> <!-- Close Row-->
+
+            <div class="row">
+                <?var url = getScriptUrl();?>
+                <a href='<?=url?>?page=Home' class="waves-effect waves-light btn">Go Back to Home</a>
+                <a href='<?=url?>?page=Task Rules' id="generatePlanBtn" class="waves-effect waves-light btn">Generate</a>
+            </div> <!-- Close Row-->
+
+        </div> <!-- Closs Container -->
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      document.getElementById("generatePlanBtn").addEventListener("click",generatePlan);
+
+      function generatePlan(){
+        var Sheeturl = "https://docs.google.com/spreadsheets/d/1faZ3pkcrwydPda4zuawftHyDNG4Y8DhUwof1R1BHGzE/edit?gid=0#gid=0";
+        var ss = SpreadsheetApp.openByUrl(Sheeturl);
+        var ws = ss.getSheetByName("Resource Plan");
+        ws.appendRow(["Task", "Department","Hours to be work on", "Priorities"]);
+      }
+    </script>
+
+    <?!= include("page-js"); ?>
+    <footer class="page-footer black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Contacts</h5>
+                    <p class="grey-text text-lighten-4">Email: ooiyinyao@gmail.com</p>
+                    <p class="grey-text text-lighten-4">Phone: 011-111 1111</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Other Features</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">BasicWebApp</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Employee List</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">WorkloadAnalysis</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Task List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

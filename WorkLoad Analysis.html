@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <main>
+        <div class="container">
+            <h1>Workload Analysis </h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <? for(var i=0; i
+                        <tableData[0].length; i++){?>
+                            <td> <?= tableData[0][i]?> </td>
+                            <? }?>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <? for(var i=1; i
+                    <tableData.length; i++){?>
+                        <tr>
+                            <? for(var j=0; j
+                            <tableData[0].length; j++){?>
+                                <td> <?= tableData[i][j]?> </td>
+                                <? }?>
+                        </tr>
+                        <? }?>
+                </tbody>
+            </table>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        </div> <!-- Close container-->
+    </main>
+</body>
+</html>
